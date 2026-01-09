@@ -1,3 +1,4 @@
+import os
 import requests
 from bs4 import BeautifulSoup
 import schedule
@@ -9,18 +10,18 @@ from telethon.tl.types import InputPeerUser, InputPeerChannel
 from telethon import TelegramClient, sync, events
 
  
-api_id = 35931157
-api_hash = 'cedb6ed5526436faeb08f890f0195b07'
-token = '8595672430:AAHVaIuUAQSAyyyU3PM_HyP_SZ_473Lm_pY'
-bot_username = 'NicksNewsBot'
+api_id = int(os.getenv("API_ID", "0"))
+api_hash = os.getenv("API_HASH", "")
+token = os.getenv("BOT_TOKEN", "")
+bot_username = os.getenv("BOT_USERNAME", "")
 
-phone_number = '+31653908138'
+phone_number = os.getenv("PHONE_NUMBER", "")
 
 URL = "https://apnews.com/search?q=iran&s=3"
 printed_headlines = set()
 
 just_started = True
-chat_id = 7317609576
+chat_id = int(os.getenv("CHAT_ID", "0"))
 
 bot = telebot.TeleBot(token)
 
